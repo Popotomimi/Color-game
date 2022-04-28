@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Jogo dos carros</title>
+
+    <style type="text/css">
+        html, body, div, img, span, p, header, main, section, .row{
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body{
+            background-color: #f7b934;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        p, header div{
+            padding: 8px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .h3 {
+            text-align: center;
+        }
+
+        main, #alerta-mobile{
+            margin-top: 54px !important;
+            height: 90%;
+        }
+
+        img {
+            width: 350px;
+            height: 165px;
+            border: solid 5px;
+            border-radius: 25px;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        section{
+            width: 100%;
+            height: 90%;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .centro{
+            color: white;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 36px;
+            width: 160px;
+            margin: 32px;
+            text-align: center;
+            color: white;
+        }
+
+        .alternativas{
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .verificado, .falha{
+            display: none;
+            background-color: white;
+            height: 160px;
+            line-height: 160px;
+            border-radius: 120px;
+            width: 160px;
+            margin: 32px;
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: 36px;
+        }
+
+        .verificado{
+            color: green;
+        }
+
+        .falha{
+            color: red;
+        }
+
+        a{
+            color: white;
+            text-decoration: none;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            background-color: black;
+            text-align: center;
+            border-radius: 25px;
+        }
+
+        #questao2, #questao3, #questao4, #final{
+            display: none;
+        }
+
+        .continuar, .finalizar{
+            display: none;
+            text-align: center;
+        }
+
+        @media (min-width: 992px) {
+            main{display: none;}
+        }
+    </style>
+
+    <script>
+        var pontos = 0;
+
+        $(document).ready(function(){
+
+            $(".correta").click(function(){
+                $(".alternativas").hide();
+                $(".centro").hide();
+                $(".falha").hide();
+                $(".verificado").show();
+                $(".continuar").show();
+                pontos++;
+                $("#pontos").html(pontos);
+            });
+
+            $(".incorreta").click(function(){
+                $(".alternativas").hide();
+                $(".centro").hide();
+                $(".falha").show();
+                $(".verificado").hide();
+                $(".continuar").show();
+            });
+
+            $(".para_questao2").click(function(){
+                $("#questao1").hide();
+                $("#questao2").show();
+                $(".alternativas").show();
+                $(".centro").show();
+                $(".falha").hide();
+                $(".verificado").hide();
+                $(".continuar").hide();
+            });
+
+            $(".para_questao3").click(function(){
+                $("#questao2").hide();
+                $("#questao3").show();
+                $(".alternativas").show();
+                $(".centro").show();
+                $(".falha").hide();
+                $(".verificado").hide();
+                $(".continuar").hide();
+            });
+
+            $(".para_questao4").click(function(){
+                $("#questao3").hide();
+                $("#questao4").show();
+                $(".alternativas").show();
+                $(".centro").show();
+                $(".falha").hide();
+                $(".verificado").hide();
+                $(".continuar").hide();
+            });
+
+            $(".finalizar").click(function(){
+                $("#questao4").hide();
+                $("#final").show();
+                $(".alternativas").hide();
+                $(".centro").hide();
+                $(".falha").hide();
+                $(".verificado").hide();
+                $(".continuar").hide();
+                $("#resultado").show();
+                if (pontos >= 4) {
+                    $("#resultado").html(pontos + "<h1>&#127942;</h1> <br>" + "<br>Parabéns você acertou tudo!");
+                } else {
+                    var resto = 0;
+                    for(var c = pontos; c < 4;c++){
+                        resto++;
+                    } if (resto == 1){
+                        $("#resultado").html(pontos + "<br>Faltou apenas "+ resto + " ponto.");
+                    } else {
+                        $("#resultado").html(pontos + "<br>Faltou apenas "+ resto + " pontos.");
+                    }
+                    
+                }
+            });
+            
+        });
+
+    </script>
+</head>
+<body>
+    <header class="row fixed-top bg-dark justify-content-between"> 
+        <div class="col-4"> CARROS QUIZ </div>
+        <div class="col-4">Pontos: <span id="pontos">0</span></div>
+    </header>
+
+    <main role="main">
+        
+        <!-- Primeira Questão -->
+        <section id="questao1">
+            <div class="alternativas row">
+                <div class="incorreta"><img src="https://i.pinimg.com/736x/c3/9e/2f/c39e2f27313bebf6037de782f03d8625.jpg" alt="carro azul"></div>
+                <div class="correta"><img src="https://i.pinimg.com/originals/66/f9/6c/66f96c7440810969b0efdc6e70f8b18b.jpg" alt="carro vermelho"></div>               
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="centro">RED</div>
+                    <div class="verificado">&#10004;</div>
+                    <div class="falha">&times;</div>
+                    <p class="continuar para_questao2">Continuar</p>
+                </div>
+            </div>
+
+            <div class="alternativas row">
+                <div class="incorreta"><img src="https://thumbs.dreamstime.com/b/ford-mustang-cobra-em-amarelo-ilustra%C3%A7%C3%A3o-de-um-166979927.jpg" alt="carro amarelo"></div>
+                <div class="incorreta"><img src="http://www.minimundi.com.br/cdn/imagens/produtos/det/56898.jpg" alt="carro preto"></div>
+            </div>
+        </section>
+
+        <!-- Segunda Questão -->
+
+        <section id="questao2">
+            <div class="alternativas row">
+                <div class="incorreta"><img src="https://i.pinimg.com/originals/66/f9/6c/66f96c7440810969b0efdc6e70f8b18b.jpg" alt="carro vermelho"></div>
+                <div class="incorreta"><img src="http://www.minimundi.com.br/cdn/imagens/produtos/det/56898.jpg" alt="carro preto"></div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="centro">YELLOW</div>
+                    <div class="verificado">&#10004;</div>
+                    <div class="falha">&times;</div>
+                    <p class="continuar para_questao3">Continuar</p>
+                </div>
+            </div>
+
+            <div class="alternativas row">
+                <div class="correta"><img src="https://thumbs.dreamstime.com/b/ford-mustang-cobra-em-amarelo-ilustra%C3%A7%C3%A3o-de-um-166979927.jpg" alt="carro amarelo"></div>
+                <div class="incorreta"><img src="https://i.pinimg.com/736x/c3/9e/2f/c39e2f27313bebf6037de782f03d8625.jpg" alt="carro azul"></div>
+            </div>
+        </section>
+
+        <!-- Terceira Questão -->
+
+        <section id="questao3">
+            <div class="alternativas row">
+                <div class="incorreta"><img src="https://i.pinimg.com/originals/66/f9/6c/66f96c7440810969b0efdc6e70f8b18b.jpg" alt="carro vermelho"></div>
+                <div class="correta"><img src="http://www.minimundi.com.br/cdn/imagens/produtos/det/56898.jpg" alt="carro preto"></div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="centro">BLACK</div>
+                    <div class="verificado">&#10004;</div>
+                    <div class="falha">&times;</div>
+                    <p class="continuar para_questao4">Continuar</p>
+                </div>
+            </div>
+
+            <div class="alternativas row">
+                <div class="incorreta"><img src="https://i.pinimg.com/736x/c3/9e/2f/c39e2f27313bebf6037de782f03d8625.jpg" alt="carro azul"></div>
+                <div class="incorreta"><img src="https://thumbs.dreamstime.com/b/ford-mustang-cobra-em-amarelo-ilustra%C3%A7%C3%A3o-de-um-166979927.jpg" alt="carro amarelo" ></div>
+            </div>
+        </section>
+
+        <!-- Quarta Questão -->
+
+        <section id="questao4">
+            <div class="alternativas row">
+                <div class="incorreta"><img src="https://i.pinimg.com/originals/9f/2f/6d/9f2f6d9da7511385d84f98288d5f56e7.jpg" alt="carro roxo"></div>
+                <div class="incorreta"><img src="https://www.sinovinyl.com/wp-content/uploads/2020/08/CL-EM-33-4-2.jpg" alt="carro rosa"></div>
+            </div>
+
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="centro">LIGHT BROWN</div>
+                    <div class="verificado">&#10004;</div>
+                    <div class="falha">&times;</div>
+                    <p class="continuar finalizar">Ver resultado</p>
+                </div>
+            </div>
+
+            <div class="alternativas row">
+                <div class="correta"><img src="https://images-americanas.b2w.io/produtos/01/00/img/1469584/0/1469584074_1GG.jpg" alt="carro marrom claro"></div>
+                <div class="incorreta"><img src="https://www.motortrend.com/uploads/f/66348985.jpg" alt="carro vinho"></div>
+            </div>
+        </section>
+
+        <!-- Tela Final -->
+
+        <section id="final">
+            <div class="container">
+                <div class="row justify-content-center align-items-center">
+                    <div class="centro">RESULTADO</div>
+                    <p class="h3">Pontos: <span id="resultado"></span></p>
+                    <a href="game.html">Começar de novo!</a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
