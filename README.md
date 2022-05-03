@@ -1,5 +1,7 @@
 <h1>Color-game</h1>
 
+![software-de-gestao-1-scaled](https://user-images.githubusercontent.com/92410083/166390444-f2e587a9-0453-4909-9308-15fd9569b0ad.jpg)
+
 > Jogo para dispositivos móveis baseado na web (Web-based mobile game).
 
 ### Jogo desenvolvido para crianças aprenderem as cores em inglês, com layout em apenas uma página, agradável e intuitivo.✔️
