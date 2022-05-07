@@ -19,6 +19,8 @@
 
 <h2>Descrição: (description.)</h2>
 
+##  SPA (single page application).
+
 <p>Software totalmente escalável para possíveis acréscimos de níveis mais difíceis.</p>
 <p>Fully scalable software for possible addition of more difficult levels.</p>
 
